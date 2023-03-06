@@ -122,75 +122,110 @@
                     <form action="{{ route('konsultasi-post') }}" method="POST">
                         @csrf
                         <input type="text" id="jumlahData" name="jumlahData" hidden value="{{ count($data)}}">
-                        @foreach ($data as $key => $value)
-                        <input type="text" id="id" name="id[]" hidden value="{{ $value->id }}">
-                            <div class="card">
-                                <div class="form-wizard active" data-index='{{ $key+1 }}' data-done='true' data-done='true'">
+                        <div class="form-wizard active" data-index='0' data-done='true'>
+                            @foreach ($data as $key => $value)
+                                <input type="text" id="id" name="id[]" hidden value="{{ $value->id }}">
+                                <div class="card">
                                     <div class="overflow-auto card-body">
-                                      <div class="row">
+                                    <div class="row">
                                         <div class="col-md-7">
-                                          <h4>{{  $value->nama_gejala  }}</h4>
+                                        <h4>{{  $value->nama_gejala  }}</h4>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-check form-check-inline mb-3">
-                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                              <label class="form-check-label" for="inlineCheckbox1">Pasti tidak</label>
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                            <label class="form-check-label" for="inlineCheckbox1">Pasti tidak</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-3">
-                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                              <label class="form-check-label" for="inlineCheckbox2">Hampir Tidak pasti</label>
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Hampir Tidak pasti</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-3">
-                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                              <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar Tidak</label>
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar Tidak</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-3">
-                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                              <label class="form-check-label" for="inlineCheckbox2">Mungkin Tidak</label>
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Mungkin Tidak</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-3">
-                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                              <label class="form-check-label" for="inlineCheckbox2">Tidak Tahu / Tidak yakin</label>
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Tidak Tahu / Tidak yakin</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-3">
-                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                              <label class="form-check-label" for="inlineCheckbox2">Mungkin</label>
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Mungkin</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-3">
-                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                              <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar</label>
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-3">
-                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                              <label class="form-check-label" for="inlineCheckbox2">Hampir Pasti</label>
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Hampir Pasti</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-3">
-                                              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                              <label class="form-check-label" for="inlineCheckbox2">Pasti</label>
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Pasti</label>
                                             </div>
                                         </div>
-                                      </div>
-                                        {{-- <div class="d-flex">
-                                            <div class="col-md-8">
-                                              <h5 class="card-title">
-                                                  {{  $value->nama_gejala  }}
-                                              </h5>
-                                            </div>
-                                            <div class="col-md-4">
-                                              <div class="form-row">
-                                                <div class="form-check">
-                                                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                  <label class="form-check-label" for="defaultCheck1">
-                                                    Default checkbox
-                                                  </label>
-                                                </div>
-                                            </div>
-                                          </div>
-                                      </div> --}}
-                                  </div>
+                                    </div>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
+                        {{-- <div class="form-wizard" data-index='1' data-done='true' data-done='true'">
+                            @foreach ($data as $key => $value)
+                                <input type="text" id="id" name="id[]" hidden value="{{ $value->id }}">
+                                <div class="card">
+                                    <div class="overflow-auto card-body">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                        <h4>{{  $value->nama_gejala  }}</h4>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check form-check-inline mb-3">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                            <label class="form-check-label" for="inlineCheckbox1">Pasti tidak</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-3">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Hampir Tidak pasti</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-3">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar Tidak</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-3">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Mungkin Tidak</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-3">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Tidak Tahu / Tidak yakin</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-3">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Mungkin</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-3">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-3">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Hampir Pasti</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-3">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                            <label class="form-check-label" for="inlineCheckbox2">Pasti</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div> --}}
                         <div class="card">
                             <div class="card-footer">
                                 <div class="row form-group p-3">

@@ -36,7 +36,7 @@
                                         {{ $itemS->basis->kode_pengetahuan }}
                                     </td>
                                     <td class="p-0 ">
-                                        <table class="w-100 p-0 table m-0">
+                                        <table class="w-100 p-0 table m-0" style="height: 500px;">
                                             @foreach ($data as $item)
                                                 @if ($itemS->basis->kode_pengetahuan === $item->basis->kode_pengetahuan)
                                                     <tr>
@@ -50,12 +50,19 @@
                                         </table>
                                     </td>
                                     <td class="p-0 w-50">
-                                        <table class="w-100 p-0 ">
+                                        <table class="w-100 p-0 " style="height: 500px;">
                                             @foreach ($data as $item)
                                                 @if ($itemS->basis->kode_pengetahuan === $item->basis->kode_pengetahuan)
                                                     <tr>
                                                         <td class="">
-                                                            {{ $item->nama_gejala }}
+                                                            <div style="display: -webkit-box;
+                                                                    -webkit-line-clamp: 1;
+                                                                    -webkit-box-orient: vertical;
+                                                                    overflow: hidden;
+                                                                    padding: 4px;
+                                                                ">
+                                                                {{ $item->nama_gejala }}
+                                                            </div>
 
                                                         </td>
                                                     </tr>
@@ -63,15 +70,22 @@
                                             @endforeach
                                         </table>
                                     </td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <a type="button" href="{{ route('gejala-penyakit.edit',$item->id) }}" class="btn btn-soft-warning mb-3 mr-3">  <i class="gd-pencil align-middle mr-1"></i> Edit Data</a>
-                                            <form action="{{ route('gejala-penyakit.destroy',$item->id) }}" method="POST" onsubmit="return confirm('Move data to trash? ')">
-                                                @csrf
-                                                @method('delete')
-                                                <button  class="btn btn-soft-danger mb-3 mr-3"><i class="gd-trash align-middle mr-1"></i>Hapus Data</button>
-                                            </form>
-                                        </div>
+                                    <td class="p-0">
+                                            @foreach ($data as $item)
+                                                @if ($itemS->basis->kode_pengetahuan === $item->basis->kode_pengetahuan)
+                                                    <div class="d-flex ">
+                                                        <a type="button" href="{{ route('gejala-penyakit.edit',$item->id) }}" class="btn btn-soft-warning mr-3">  <i class="gd-pencil align-middle mr-1"></i> Edit Data</a>
+                                                        <form action="{{ route('gejala-penyakit.destroy',$item->id) }}" method="POST" onsubmit="return confirm('Move data to trash? ')">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button  class="btn btn-soft-danger mr-3"><i class="gd-trash align-middle mr-1"></i>Hapus Data</button>
+                                                        </form>
+                                                    </div>
+                                                    <hr class="m-2">
+
+                                                @endif
+                                            @endforeach
+
                                     </td>
                                 </tr>
                                 @endforeach

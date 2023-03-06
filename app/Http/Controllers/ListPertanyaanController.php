@@ -10,6 +10,7 @@ class ListPertanyaanController extends Controller
     public function index()
     {
         $data['data'] = GejalaPenyakit::with('basis')->get();
+        $data['count'] = GejalaPenyakit::with('basis')->count();
         $data['kode_basis'] =  $data['data']->unique('kode_basis_pengetahuan');
         return view('list-pertanyaan',$data);
     }
