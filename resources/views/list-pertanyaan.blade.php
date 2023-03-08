@@ -14,8 +14,7 @@
   <meta name="HandheldFriendly" content="true">
   <title>Stride HTML Template - Frontpage one</title>
   <link rel="stylesheet" href="{{ asset('') }}frontend/css/theme.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <style>
     .form-wizard {
         display: none;
@@ -112,120 +111,67 @@
 
     <div class="py-vh-5 w-100 overflow-hidden" id="services">
       <div class="container-fluid">
-        <div class="row d-flex justify-content-end mb-4">
+        <div class="row d-flex justify-content-center mb-4">
           <div class="col-lg-8" data-aos="fade-down">
             <h2 class="display-6">List Pertanyaan.</h2>
-          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="">Tanggal</label>
+                <input type="text" class="form-control" value="{{ $pasien->tanggal }}" readonly>
+            </div>
+            <div class="col-md-6">
+                <label for="">Nama</label>
+                <input type="text" class="form-control" value="{{ $pasien->nama_pasien }}" readonly>
+            </div>
+        </div>
         </div>
             <div class="row d-flex align-items-center">
                 <div class="contents order-2 order-md-2">
-                    <form action="{{ route('konsultasi-post') }}" method="POST">
+                    <form action="{{ route('list-pertanyaan.post') }}" method="POST">
                         @csrf
-                        <input type="text" id="jumlahData" name="jumlahData" hidden value="{{ count($data)}}">
-                        <div class="form-wizard active" data-index='0' data-done='true'>
-                            @foreach ($data as $key => $value)
-                                <input type="text" id="id" name="id[]" hidden value="{{ $value->id }}">
-                                <div class="card">
-                                    <div class="overflow-auto card-body">
-                                    <div class="row">
-                                        <div class="col-md-7">
-                                        <h4>{{  $value->nama_gejala  }}</h4>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                            <label class="form-check-label" for="inlineCheckbox1">Pasti tidak</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Hampir Tidak pasti</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar Tidak</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Mungkin Tidak</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Tidak Tahu / Tidak yakin</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Mungkin</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Hampir Pasti</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Pasti</label>
+                        <input type="text" value="{{ $pasien->id }}" name="id_pasien">
+                        <input type="text" id="jumlahData" name="jumlahData" hidden value="{{ count($chunks)}}">
+                        @foreach($chunks as $key => $chunk)
+
+                            <div class="form-wizard {{ $key == 0 ? 'active' : '' }}" data-index='{{ $key+1 }}'>
+                                @foreach($chunk as $item)
+                                    <input type="text" id="id" name="id[]" hidden value="{{ $item->id }}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <h5 class="card-text">{{ $item->nama_gejala }}</h5>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-check form-check-inline mb-3">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="-1" name="kondisi[{{ $item->kode_gejala }}]">
+                                                        <label class="form-check-label" for="inlineCheckbox1">tidak</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mb-3">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.2" name="kondisi[{{ $item->kode_gejala }}]">
+                                                        <label class="form-check-label" for="inlineCheckbox2">Tidak Tahu / Tidak yakin</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mb-3">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.4" name="kondisi[{{ $item->kode_gejala }}]">
+                                                        <label class="form-check-label" for="inlineCheckbox2">Mungkin</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mb-3">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.6" name="kondisi[{{ $item->kode_gejala }}]">
+                                                        <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar</label>
+                                                    </div>
+
+                                                    <div class="form-check form-check-inline mb-3">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.8" name="kondisi[{{ $item->kode_gejala }}]">
+                                                        <label class="form-check-label" for="inlineCheckbox2">Pasti</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        {{-- <div class="form-wizard" data-index='1' data-done='true' data-done='true'">
-                            @foreach ($data as $key => $value)
-                                <input type="text" id="id" name="id[]" hidden value="{{ $value->id }}">
-                                <div class="card">
-                                    <div class="overflow-auto card-body">
-                                    <div class="row">
-                                        <div class="col-md-7">
-                                        <h4>{{  $value->nama_gejala  }}</h4>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                            <label class="form-check-label" for="inlineCheckbox1">Pasti tidak</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Hampir Tidak pasti</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar Tidak</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Mungkin Tidak</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Tidak Tahu / Tidak yakin</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Mungkin</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Hampir Pasti</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mb-3">
-                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                            <label class="form-check-label" for="inlineCheckbox2">Pasti</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div> --}}
+                                @endforeach
+                            </div>
+                        @endforeach
                         <div class="card">
                             <div class="card-footer">
                                 <div class="row form-group p-3">
@@ -333,12 +279,11 @@
   <script>
     $(document).ready(function() {
         var jumlahData = $('#jumlahData').val();
+        console.log(jumlahData);
         function cekBtn() {
             var indexNow = $(".form-wizard.active").data('index');
             var prev = parseInt(indexNow) - 1
             var next = parseInt(indexNow) + 1
-            console.log(indexNow);
-
             $(".btn-prev").hide()
             $(".btn-simpan").hide()
 
@@ -415,7 +360,7 @@
       if (scrollpos >= header_height) { add_class_on_scroll(); }
       else { remove_class_on_scroll(); }
 
-      console.log(scrollpos);
+    //   console.log(scrollpos);
     })
   </script>
 

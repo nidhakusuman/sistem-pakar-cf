@@ -25,18 +25,17 @@
                                 <th scope="col">Kode Pengetahuan</th>
                                 <th scope="col">Kode Gejala</th>
                                 <th scope="col">Gejala Penyakit</th>
-                                <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
                                 @foreach ($kode_basis as $itemS)
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>
+                                    <th scope="row" width="20px">{{ $loop->iteration }}</th>
+                                    <td width="2px">
                                         {{ $itemS->basis->kode_pengetahuan }}
                                     </td>
-                                    <td class="p-0 ">
-                                        <table class="w-100 p-0 table m-0" style="height: 500px;">
+                                    <td class="p-0 " width="100px">
+                                        <table class="w-100 p-0 table m-0" style="height: 600px;">
                                             @foreach ($data as $item)
                                                 @if ($itemS->basis->kode_pengetahuan === $item->basis->kode_pengetahuan)
                                                     <tr>
@@ -49,8 +48,8 @@
                                             @endforeach
                                         </table>
                                     </td>
-                                    <td class="p-0 w-50">
-                                        <table class="w-100 p-0 " style="height: 500px;">
+                                    <td class="p-0 w-100">
+                                        <table class="w-100 p-0 " style="height: 600px">
                                             @foreach ($data as $item)
                                                 @if ($itemS->basis->kode_pengetahuan === $item->basis->kode_pengetahuan)
                                                     <tr>
@@ -63,29 +62,21 @@
                                                                 ">
                                                                 {{ $item->nama_gejala }}
                                                             </div>
-
+                                                        </td>
+                                                        <td width="500px">
+                                                            <div class="d-flex">
+                                                                <a type="button" href="{{ route('gejala-penyakit.edit',$item->id) }}" class="btn btn-soft-warning mr-3">  <i class="gd-pencil align-middle mr-1"></i> Edit Data</a>
+                                                                <form action="{{ route('gejala-penyakit.destroy',$item->id) }}" method="POST" onsubmit="return confirm('Move data to trash? ')">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <button  class="btn btn-soft-danger mr-3"><i class="gd-trash align-middle mr-1"></i>Hapus Data</button>
+                                                                </form>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 @endif
                                             @endforeach
                                         </table>
-                                    </td>
-                                    <td class="p-0">
-                                            @foreach ($data as $item)
-                                                @if ($itemS->basis->kode_pengetahuan === $item->basis->kode_pengetahuan)
-                                                    <div class="d-flex ">
-                                                        <a type="button" href="{{ route('gejala-penyakit.edit',$item->id) }}" class="btn btn-soft-warning mr-3">  <i class="gd-pencil align-middle mr-1"></i> Edit Data</a>
-                                                        <form action="{{ route('gejala-penyakit.destroy',$item->id) }}" method="POST" onsubmit="return confirm('Move data to trash? ')">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button  class="btn btn-soft-danger mr-3"><i class="gd-trash align-middle mr-1"></i>Hapus Data</button>
-                                                        </form>
-                                                    </div>
-                                                    <hr class="m-2">
-
-                                                @endif
-                                            @endforeach
-
                                     </td>
                                 </tr>
                                 @endforeach

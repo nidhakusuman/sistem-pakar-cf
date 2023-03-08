@@ -86,7 +86,7 @@
 <!-- End Header -->
 
 <main class="main">
-    @include('layouts.partials.sidebar');
+    @include('layouts.partials.sidebar')
 
     @yield('content')
 

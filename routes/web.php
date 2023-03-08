@@ -26,6 +26,7 @@ Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 Route::get('/konsultasi',[KonsultasiController::class,'index'])->name('konsultasi');
 Route::post('/konsultasi-post',[KonsultasiController::class,'post'])->name('konsultasi-post');
 Route::get('list-pertanyaan',[ListPertanyaanController::class,'index'])->name('list-pertanyaan');
+Route::post('list-pertanyaan/post',[ListPertanyaanController::class,'save'])->name('list-pertanyaan.post');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');

@@ -14,6 +14,7 @@
   <meta name="HandheldFriendly" content="true">
   <title>Stride HTML Template - Frontpage one</title>
   <link rel="stylesheet" href="{{ asset('') }}frontend/css/theme.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
   <style>
     /* inter-300 - latin */
@@ -104,29 +105,42 @@
       <div class="container">
         <div class="row d-flex justify-content-end">
           <div class="col-lg-8" data-aos="fade-down">
-            <h2 class="display-6">Daftar Diri.</h2>
+            <h2 class="display-6">Hasil Perhitungan.</h2>
           </div>
         </div>
-        <form action="{{ route('konsultasi-post') }}" method="POST">
-        @csrf
-        <div class="row d-flex align-items-center">
-            <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="200">
-                <label for="">Tanggal</label>
-                <input type="date" class="form-control" value="{{ now()->toDateString() }}" name="tgl" readonly>
-            </div>
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
 
-            <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="400">
-              <label for="">Nama Lengkap Anak</label>
-              <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Lengkap">
+                    <tbody>
+                        <tr>
+                            <td>Nama Pasien</td>
+                            <td>
+                                {{ $data_pasien->nama_pasien }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Gejala</td>
+                            <td>
+                                <ul>
+                                    @foreach ($gejala as $item)
+                                        <li>{{ $item['nama_gejala'] }}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Persentase</td>
+                            <td>
+                                ditemukan sebuah kemungkinan yaitu usia perkembangan anak masih berada pada tahap usia 4-5tahun. Dengan tingkat kemungkinan anak terkena speech delay adalah <span class="badge badge-primary">{{ $data_pasien->persentase }} %</span>
+                            </td>
+                        </tr>
+                    </tbody>
 
-            </div>
 
-          <div class="col-md-6 col-lg-4 py-vh-5 pb-0" data-aos="fade-up" data-aos-delay="600">
-            <button type="submit" class="btn btn-primary ">Lanjutkan Konsultasi </button>
-
+                </table>
             </div>
         </div>
-        </form>
 
       </div>
     </div>

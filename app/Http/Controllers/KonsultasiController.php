@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HasilPerhitungan;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session as FacadesSession;
+
+use function Pest\Laravel\json;
 
 class KonsultasiController extends Controller
 {
@@ -14,8 +18,10 @@ class KonsultasiController extends Controller
 
     public function post(Request $request)
     {
-        $request->session()->put('tgl', $request->get('tgl'));
-        $request->session()->put('nama', $request->get('nama'));
+        $new = new HasilPerhitungan;
+        $new->tanggal = now();
+        $new->nama_pasien = $request->get('nama');
+        $new->save();
         return redirect()->route('list-pertanyaan');
     }
 }
