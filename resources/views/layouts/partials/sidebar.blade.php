@@ -43,8 +43,8 @@
         <li class="sidebar-heading h6">Data</li>
         <!-- End Title -->
         <!-- Documentation -->
-        <li class="side-nav-menu-item">
-            <a class="side-nav-menu-link media align-items-center" href="documentation/" target="_blank">
+        <li class="side-nav-menu-item {{ Request::segment(1) == 'data-pasien' ? 'active' : ''}}"">
+            <a class="side-nav-menu-link media align-items-center" href="{{ route('data.pasien.index') }}" target="_blank">
           <span class="side-nav-menu-icon d-flex mr-3">
             <i class="gd-user"></i>
           </span>

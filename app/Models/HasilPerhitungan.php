@@ -9,5 +9,12 @@ class HasilPerhitungan extends Model
 {
     use HasFactory;
     protected $table = 'hasil_perhitungan';
+    protected $fillable =[
+        'tanggal',
+        'nama_pasien',
+        'status_usia',
+        'kode_penyakit',
+        'nilai_akhir',
+    ];
 }
 

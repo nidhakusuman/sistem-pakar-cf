@@ -105,40 +105,64 @@
       <div class="container">
         <div class="row d-flex justify-content-end">
           <div class="col-lg-8" data-aos="fade-down">
-            <h2 class="display-6">Hasil Perhitungan.</h2>
+            <h2 class="display-6 font-weight-bold">Hasil Perhitungan.</h2>
           </div>
         </div>
         <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bondered">
+                            <thead>
+                                <tr>
+                                    <th>Kode Gejala</th>
+                                    <th>Nama Gejala</th>
+                                    <th>Nilai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($hasilNilai as $item)
+                                    @php
+                                        $nama_gejala = \App\Models\GejalaPenyakit::where('kode_gejala',$item->kode_gejala)->get();
+                                    @endphp
+                                   @foreach ($nama_gejala as $itemGejala)
+                                    <tr>
+                                        <td>{{ $item->kode_gejala }}</td>
+                                        <td>{{ $itemGejala->nama_gejala }}</td>
+                                        <td>{{ $item->nilai_cfhe }}</td>
+                                    </tr>
+                                   @endforeach
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card my-4">
             <div class="card-body">
                 <table class="table">
 
                     <tbody>
                         <tr>
-                            <td>Nama Pasien</td>
+                            <th>Kesimpulan </th>
                             <td>
-                                {{ $data_pasien->nama_pasien }}
+                                <div class="alert alert-warning" role="alert">
+                                    ditemukan sebuah kemungkinan yaitu usia perkembangan anak masih berada pada tahap {{ $basis_pengetahuan->keterangan_usia }}. Dengan tingkat kemungkinan anak terkena speech delay adalah <strong>{{ $nilai_ahir * 100 }}%</strong>
+                                </div>
+                                {{-- {{ $data_pasien->nama_pasien }} --}}
                             </td>
                         </tr>
-                        <tr>
-                            <td>Gejala</td>
-                            <td>
-                                <ul>
-                                    @foreach ($gejala as $item)
-                                        <li>{{ $item['nama_gejala'] }}</li>
-                                    @endforeach
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Persentase</td>
-                            <td>
-                                ditemukan sebuah kemungkinan yaitu usia perkembangan anak masih berada pada tahap usia 4-5tahun. Dengan tingkat kemungkinan anak terkena speech delay adalah <span class="badge badge-primary">{{ $data_pasien->persentase }} %</span>
-                            </td>
-                        </tr>
+
                     </tbody>
 
 
                 </table>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-end">
+                    <a href="{{ route('konsultasi') }}" class="btn btn-primary">Konsultasi</a>
+                </div>
             </div>
         </div>
 

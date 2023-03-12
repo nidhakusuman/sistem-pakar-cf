@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('tanggal', 50);
             $table->string('nama_pasien')->nullable();
             $table->text('status_usia')->nullable();
-            $table->json('gejala')->nullable();
-            $table->string('persentase', 20)->nullable();
+            $table->string('kode_penyakit')->nullable();
+            $table->float('nilai_akhir')->nullable();
             $table->timestamps();
         });
     }

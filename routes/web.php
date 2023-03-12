@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\BasisPengetahuanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataPasienController;
 use App\Http\Controllers\GejalaPenyakitController;
+use App\Http\Controllers\HasilPerhitunganController;
 use App\Http\Controllers\KonsultasiController;
 use App\Http\Controllers\ListPertanyaanController;
 use App\Http\Controllers\ProfileController;
@@ -27,6 +29,7 @@ Route::get('/konsultasi',[KonsultasiController::class,'index'])->name('konsultas
 Route::post('/konsultasi-post',[KonsultasiController::class,'post'])->name('konsultasi-post');
 Route::get('list-pertanyaan',[ListPertanyaanController::class,'index'])->name('list-pertanyaan');
 Route::post('list-pertanyaan/post',[ListPertanyaanController::class,'save'])->name('list-pertanyaan.post');
+Route::get('hasil-perhitungan/{id}',[HasilPerhitunganController::class, 'diagnosa'])->name('diagnosa');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
@@ -34,6 +37,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('basis-pengetahuan', BasisPengetahuanController::class);
     // gejala penyakit
     Route::resource('gejala-penyakit', GejalaPenyakitController::class);
+    // Data Pasien
+    Route::get('data-pasien',[DataPasienController::class,'index'])->name('data.pasien.index');
 
 });
 

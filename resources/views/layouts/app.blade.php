@@ -108,5 +108,6 @@
     $.GDCore.components.GDChartistBar.init('.js-bar-chart');
     $.GDCore.components.GDChartistDonut.init('.js-donut-chart');
 </script>
+@stack('js')
 </body>
 </html>

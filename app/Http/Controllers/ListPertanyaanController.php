@@ -5,76 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\BasisPengetahuan;
 use App\Models\GejalaPenyakit;
 use App\Models\HasilPerhitungan;
+use App\Models\NilaiPerhitunganModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Request as FacadesRequest;
+use Illuminate\Support\Facades\Session;
 
 class ListPertanyaanController extends Controller
 {
     public function index()
     {
         $data['pasien'] = HasilPerhitungan::orderBy('id','DESC')->first();
+        Session::put('nama_user', $data['pasien']->nama_pasien);
+        Session::put('id', $data['pasien']->id);
         $items = GejalaPenyakit::with('basis')->get();
         $data['chunks'] = $items->chunk(10);
         $data['count'] = GejalaPenyakit::with('basis')->count();
         // $data['kode_basis'] =  $data['data']->unique('kode_basis_pengetahuan');
         return view('list-pertanyaan',$data);
     }
-    // public function save(Request $request)
-    // {
-    //     return $request;
-    //     $data = array();
-    //     // tidak
-    //     if ($request->has('tidak')) {
-    //         for ($i=0; $i < count($request->get('tidak')) ; $i++) {
-    //             array_push($data,[
-    //                 'cf_hasil' => (int)$request->get('tidak')[$i] * 1,
-    //             ]);
-    //         }
-    //     }
-    //     // tidak_yakin
-    //     if ($request->has('tidak_yakin')) {
-    //         for ($i=0; $i < count($request->get('tidak_yakin')) ; $i++) {
-    //             array_push($data,[
-    //                 'cf_hasil' => $request->get('tidak_yakin')[$i] * 1,
-    //             ]);
-    //         };
-    //     }
-    //     // mungkin
-    //     if ($request->has('mungkin')) {
-    //         for ($i=0; $i < count($request->get('mungkin')) ; $i++) {
-    //             array_push($data,[
-    //                 'cf_hasil' => $request->get('mungkin')[$i] * 1,
-    //             ]);
-    //         };
-    //     }
-    //     // kemungkinan_besar
-    //     if ($request->has('kemungkinan_besar')) {
-    //         for ($i=0; $i < count($request->get('kemungkinan_besar')) ; $i++) {
-    //             array_push($data,[
-    //                 'cf_hasil' => $request->get('kemungkinan_besar')[$i] * 1,
-    //             ]);
-    //         };
-    //     }
-    //     // hampir_pasti
-    //     if ($request->has('hampir_pasti')) {
-    //         for ($i=0; $i < count($request->get('hampir_pasti')) ; $i++) {
-    //             array_push($data,[
-    //                 'cf_hasil' => $request->get('hampir_pasti')[$i] * 1,
-    //             ]);
-    //         };
-    //     }
-    //     // pasti
-    //     if ($request->has('pasti')) {
-    //         for ($i=0; $i < count($request->get('pasti')) ; $i++) {
-    //             array_push($data,[
-    //                 'cf_hasil' => $request->get('pasti')[$i] * 1,
-    //             ]);
-    //         };
-    //     }
-    //     return $data;
 
-    //    return $this->hitung_cf($data) * 100;
-    // }
     public function save(Request $request)
     {
         $filteredArray = $request->post('kondisi');
@@ -82,39 +31,112 @@ class ListPertanyaanController extends Controller
             return $value !== null;
         });
 
+        if ($kondisi == null) {
+            return redirect()->route('konsultasi');
+        }
         $kodeGejala = [];
         $bobotPilihan = [];
+        $kode_penyakit = [];
         foreach ($kondisi as $key => $val) {
             if ($val != "#") {
-
-                array_push($kodeGejala, $key);
+                array_push($kode_penyakit,$this->pecahkode($key)[1]);
+                array_push($kodeGejala, $this->pecahkode($key)[0]);
                 array_push($bobotPilihan, $val);
             }
         };
+
         $hcf = 0;
-        $dataCF = [
-            "cf" => [],
-        ];
-        $ruleSetiapDepresi = GejalaPenyakit::whereIn("kode_gejala", $kodeGejala)->get();
+
+        $dataNilaiHasilCFHE = [];
+        $ruleSetiapDepresi = GejalaPenyakit::join('basis_pengetahuan','basis_pengetahuan.id','genjala_penyakit.kode_basis_pengetahuan')->whereIn("genjala_penyakit.kode_gejala", $kodeGejala)->whereIn('basis_pengetahuan.kode_pengetahuan',$kode_penyakit)->get();
         foreach ($ruleSetiapDepresi as $ruleKey => $item) {
-            $hcf = $bobotPilihan[$ruleKey] * 1;
-            array_push($dataCF["cf"], $hcf);
-            // array_push($cfArr["kode_depresi"], $ruleKey->kode_depresi);
+            $hcf =  $item->nilai_pakar * $bobotPilihan[$ruleKey];
+            if ($kode_penyakit[$ruleKey] == $item->kode_pengetahuan) {
+                array_push($dataNilaiHasilCFHE,[
+                    'kode_penyakit' => $kode_penyakit[$ruleKey],
+                    'kode_gejala' => $kodeGejala[$ruleKey],
+                    'nilai_cfe' => $hcf,
+                ]);
+            }
+
         }
-        $res = $this->getGabunganCf($dataCF)['value'] * 100;
-        $data_pasien = HasilPerhitungan::find($request->get('id_pasien'));
-        $new = HasilPerhitungan::findOrFail($request->get('id_pasien'));
-        $new->tanggal = now();
-        $new->nama_pasien = $data_pasien->nama_pasien;
-        $new->gejala = $ruleSetiapDepresi;
-        $new->persentase = $res;
-        $new->update();
-        $data['data_pasien'] = HasilPerhitungan::find($request->get('id_pasien'));
-        $data['gejala'] = json_decode($data['data_pasien']->gejala, true);
-        return view('hasil-perhitungan',$data);
+        foreach ($dataNilaiHasilCFHE as $key => $valueNilaiHasilCFHE) {
+            $hasil = new NilaiPerhitunganModel;
+            $hasil->kode_penyakit = $valueNilaiHasilCFHE['kode_penyakit'];
+            $hasil->id_user = $request->get('id_pasien');
+            $hasil->kode_gejala = $valueNilaiHasilCFHE['kode_gejala'];
+            $hasil->nilai_cfhe = (float)$valueNilaiHasilCFHE['nilai_cfe'];
+            $hasil->save();
+        }
+        $depresi = BasisPengetahuan::all();
+        $cf = 0;
+        // penyakit
+        $arrGejala = [];
+        $arrPenyakit = [];
+        $cfArr = [
+            "cf" => [],
+            "kode_penyakit" => []
+        ];
+        for ($i = 0; $i < count($depresi); $i++) {
+            $res = 0;
+            $ruleSetiapDepresi = NilaiPerhitunganModel::whereIn("kode_gejala", $kodeGejala)->where("kode_penyakit", $depresi[$i]->kode_pengetahuan)->get();
+            if (count($ruleSetiapDepresi) > 0) {
+                foreach ($ruleSetiapDepresi as $ruleKey) {
+                    $cf = $ruleKey->nilai_cfhe;
+                    array_push($cfArr["cf"], $cf);
+                    array_push($cfArr["kode_penyakit"], $ruleKey->kode_penyakit);
+                }
+                $res = $this->getGabunganCf($cfArr);
+                // dd($res);
+                // print "<br> res : $res <br>";
+                array_push($arrGejala, $res);
+                array_push($arrPenyakit, $cfArr["kode_penyakit"]);
+            } else {
+                continue;
+            }
+        }
+        $hasil = [];
+        $uniqueArr = array_values(array_unique($kode_penyakit));
+        foreach ($arrGejala as $key => $value) {
+            array_push($hasil,$value['value']);
+        }
+        $record = HasilPerhitungan::where(['id'=>$request->get('id_pasien')]);
+        if ($record->exists()) {
+            $record->delete();
+        }
+        foreach ($hasil as $key => $value) {
+            $new = new HasilPerhitungan;
+            $new->tanggal = now();
+            $new->nama_pasien = Session::get('nama_user');
+            $new->kode_penyakit = $uniqueArr[$key];
+            $new->nilai_akhir = $value;
+            $new->save();
+
+        }
+        // return view('hasil-perhitungan',$data);
+        return redirect()->route('diagnosa',["id" => $new->id]);
 
 
 
+    }
+    public function pecahkode($kode)
+    {
+        $kode = explode('-', $kode);
+        return $kode;
+    }
+    public function test($cfArr)
+    {
+        if (!$cfArr['cf']) {
+            return 0;
+        };
+        $cfoldGabungan = $cfArr["cf"][0];
+
+        for ($i=0; $i < count($cfArr['cf']); $i++) {
+            if ($i >= 1) {
+                $test = $cfoldGabungan + $cfArr["cf"][$i] * (1 - $cfoldGabungan);
+                return $test;
+            }
+        }
     }
     public function getGabunganCf($cfArr)
     {

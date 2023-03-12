@@ -44,7 +44,7 @@ class GejalaPenyakitController extends Controller
             $gejala->kode_gejala = $request->get('kode');
             $gejala->kode_basis_pengetahuan = $request->get('kode_pengetahuan');
             $gejala->nama_gejala = $request->get('nama_gejala');
-            $gejala->ket = $request->get('ket');
+            $gejala->nilai_pakar = $request->get('nilai_pakar');
             $gejala->save();
             return redirect()->route('gejala-penyakit.index')->withStatus('Berhasil mendapatkan data');
         } catch (Exception $e) {
@@ -89,7 +89,7 @@ class GejalaPenyakitController extends Controller
             $gejala->kode_gejala = $request->get('kode');
             $gejala->kode_basis_pengetahuan = $request->get('kode_pengetahuan');
             $gejala->nama_gejala = $request->get('nama_gejala');
-            $gejala->ket = $request->get('ket');
+            $gejala->nilai_pakar = $request->get('nilai_pakar');
             $gejala->update();
             return redirect()->route('gejala-penyakit.index')->withStatus('Berhasil mendapatkan data');
         } catch (Exception $e) {

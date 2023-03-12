@@ -137,6 +137,7 @@
                             <div class="form-wizard {{ $key == 0 ? 'active' : '' }}" data-index='{{ $key+1 }}'>
                                 @foreach($chunk as $item)
                                     <input type="text" id="id" name="id[]" hidden value="{{ $item->id }}">
+                                    <input type="text" id="id" name="id[]"  value="{{ Session::get('nama_user') }}">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
@@ -145,24 +146,28 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-check form-check-inline mb-3">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="-1" name="kondisi[{{ $item->kode_gejala }}]">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="0" name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
                                                         <label class="form-check-label" for="inlineCheckbox1">tidak</label>
                                                     </div>
                                                     <div class="form-check form-check-inline mb-3">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.2" name="kondisi[{{ $item->kode_gejala }}]">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.2" name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
                                                         <label class="form-check-label" for="inlineCheckbox2">Tidak Tahu / Tidak yakin</label>
                                                     </div>
                                                     <div class="form-check form-check-inline mb-3">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.4" name="kondisi[{{ $item->kode_gejala }}]">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.4" name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
                                                         <label class="form-check-label" for="inlineCheckbox2">Mungkin</label>
                                                     </div>
                                                     <div class="form-check form-check-inline mb-3">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.6" name="kondisi[{{ $item->kode_gejala }}]">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.6" name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
                                                         <label class="form-check-label" for="inlineCheckbox2">Kemungkinan Besar</label>
                                                     </div>
 
                                                     <div class="form-check form-check-inline mb-3">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.8" name="kondisi[{{ $item->kode_gejala }}]">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.8" name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
+                                                        <label class="form-check-label" for="inlineCheckbox2">Hampir Pasti</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mb-3">
+                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="1" name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
                                                         <label class="form-check-label" for="inlineCheckbox2">Pasti</label>
                                                     </div>
                                                 </div>

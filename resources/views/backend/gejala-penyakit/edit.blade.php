@@ -45,9 +45,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Keterangan</label>
-                                <input type="text" name="ket" value="{{ old('kode',$data->ket) }}" class="form-control @error('ket') is-invalid @enderror" id="exampleInputPassword1" placeholder="Keterangan">
-                                  @error('ket')
+                                <label for="exampleInputPassword1">Nilai Pakar</label>
+                                <input type="text" name="nilai_pakar" value="{{ old('kode',$data->nilai_pakar) }}" class="form-control @error('nilai_pakar') is-invalid @enderror" id="exampleInputPassword1" placeholder="Nilai Pakar">
+                                  @error('nilai_pakar')
                                       <div class="invalid-feedback">
                                           {{$message}}.
                                       </div>

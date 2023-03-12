@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('genjala_penyakit', function (Blueprint $table) {
+        Schema::create('hasil_nilai_perhitungan', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_gejala')->uniqid();
-            $table->string('nama_gejala');
-            $table->double('nilai_pakar')->nullable();
+            $table->string('kode_penyakit');
+            $table->string('kode_gejala');
+            $table->double('nilai_cfhe');
             $table->timestamps();
-            $table->foreignId('kode_basis_pengetahuan')->on('basis_pengetahuan')->refereces('id')->cascadeOnUpdate()->cascadeOnDelete();
-
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('genjala_penyakit');
+        Schema::dropIfExists('hasil_nilai_perhitungan');
     }
 };
