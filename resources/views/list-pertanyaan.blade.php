@@ -130,14 +130,14 @@
                 <div class="contents order-2 order-md-2">
                     <form action="{{ route('list-pertanyaan.post') }}" method="POST">
                         @csrf
-                        <input type="text" value="{{ $pasien->id }}" name="id_pasien">
+                        <input type="text" value="{{ $pasien->id }}" hidden name="id_pasien">
                         <input type="text" id="jumlahData" name="jumlahData" hidden value="{{ count($chunks)}}">
                         @foreach($chunks as $key => $chunk)
 
                             <div class="form-wizard {{ $key == 0 ? 'active' : '' }}" data-index='{{ $key+1 }}'>
                                 @foreach($chunk as $item)
                                     <input type="text" id="id" name="id[]" hidden value="{{ $item->id }}">
-                                    <input type="text" id="id" name="id[]"  value="{{ Session::get('nama_user') }}">
+                                    <input type="text" id="id" name="id[]" hidden value="{{ Session::get('nama_user') }}">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
@@ -164,10 +164,6 @@
 
                                                     <div class="form-check form-check-inline mb-3">
                                                         <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="0.8" name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
-                                                        <label class="form-check-label" for="inlineCheckbox2">Hampir Pasti</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline mb-3">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="1" name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
                                                         <label class="form-check-label" for="inlineCheckbox2">Pasti</label>
                                                     </div>
                                                 </div>

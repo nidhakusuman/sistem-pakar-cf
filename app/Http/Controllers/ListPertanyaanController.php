@@ -55,31 +55,34 @@ class ListPertanyaanController extends Controller
                 array_push($dataNilaiHasilCFHE,[
                     'kode_penyakit' => $kode_penyakit[$ruleKey],
                     'kode_gejala' => $kodeGejala[$ruleKey],
-                    'nilai_cfe' => $hcf,
+                    'nilai_cfe' => round($hcf,2),
                 ]);
             }
 
         }
-        foreach ($dataNilaiHasilCFHE as $key => $valueNilaiHasilCFHE) {
-            $hasil = new NilaiPerhitunganModel;
-            $hasil->kode_penyakit = $valueNilaiHasilCFHE['kode_penyakit'];
-            $hasil->id_user = $request->get('id_pasien');
-            $hasil->kode_gejala = $valueNilaiHasilCFHE['kode_gejala'];
-            $hasil->nilai_cfhe = (float)$valueNilaiHasilCFHE['nilai_cfe'];
-            $hasil->save();
-        }
+        // foreach ($dataNilaiHasilCFHE as $key => $valueNilaiHasilCFHE) {
+        //     $hasil = new NilaiPerhitunganModel;
+        //     $hasil->kode_penyakit = $valueNilaiHasilCFHE['kode_penyakit'];
+        //     $hasil->id_user = $request->get('id_pasien');
+        //     $hasil->kode_gejala = $valueNilaiHasilCFHE['kode_gejala'];
+        //     $hasil->nilai_cfhe = (float)$valueNilaiHasilCFHE['nilai_cfe'];
+        //     $hasil->save();
+        // }
         $depresi = BasisPengetahuan::all();
         $cf = 0;
         // penyakit
         $arrGejala = [];
-        $arrPenyakit = [];
-        $cfArr = [
-            "cf" => [],
-            "kode_penyakit" => []
-        ];
         for ($i = 0; $i < count($depresi); $i++) {
+            $cfArr = [
+                "cf" => [],
+                "kode_penyakit" => []
+            ];
             $res = 0;
             $ruleSetiapDepresi = NilaiPerhitunganModel::whereIn("kode_gejala", $kodeGejala)->where("kode_penyakit", $depresi[$i]->kode_pengetahuan)->get();
+            // if ($i == 3) {
+            //     return $ruleSetiapDepresi;
+            // }
+                // return count($ruleSetiapDepresi);
             if (count($ruleSetiapDepresi) > 0) {
                 foreach ($ruleSetiapDepresi as $ruleKey) {
                     $cf = $ruleKey->nilai_cfhe;
@@ -87,18 +90,20 @@ class ListPertanyaanController extends Controller
                     array_push($cfArr["kode_penyakit"], $ruleKey->kode_penyakit);
                 }
                 $res = $this->getGabunganCf($cfArr);
+                // return 'as';
+                array_push($arrGejala,$res);
                 // dd($res);
                 // print "<br> res : $res <br>";
-                array_push($arrGejala, $res);
-                array_push($arrPenyakit, $cfArr["kode_penyakit"]);
-            } else {
+                // array_push($arrGejala, $cfArr);
+            }else {
                 continue;
             }
         }
+
         $hasil = [];
         $uniqueArr = array_values(array_unique($kode_penyakit));
         foreach ($arrGejala as $key => $value) {
-            array_push($hasil,$value['value']);
+            array_push($hasil,(float)$value['value']);
         }
         $record = HasilPerhitungan::where(['id'=>$request->get('id_pasien')]);
         if ($record->exists()) {
@@ -124,20 +129,7 @@ class ListPertanyaanController extends Controller
         $kode = explode('-', $kode);
         return $kode;
     }
-    public function test($cfArr)
-    {
-        if (!$cfArr['cf']) {
-            return 0;
-        };
-        $cfoldGabungan = $cfArr["cf"][0];
 
-        for ($i=0; $i < count($cfArr['cf']); $i++) {
-            if ($i >= 1) {
-                $test = $cfoldGabungan + $cfArr["cf"][$i] * (1 - $cfoldGabungan);
-                return $test;
-            }
-        }
-    }
     public function getGabunganCf($cfArr)
     {
         if (!$cfArr["cf"]) {
@@ -146,8 +138,10 @@ class ListPertanyaanController extends Controller
         if (count($cfArr["cf"]) == 1) {
             return [
                 "value" => strval($cfArr["cf"][0]),
+                "kode_penyakit" => $cfArr["kode_penyakit"][0]
             ];
         }
+
 
         $cfoldGabungan = $cfArr["cf"][0];
 
@@ -162,6 +156,7 @@ class ListPertanyaanController extends Controller
 
         return [
             "value" => "$cfoldGabungan",
+            "kode_penyakit" => $cfArr["kode_penyakit"][0]
         ];
     }
     public function hitung_cf($data)
