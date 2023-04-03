@@ -60,14 +60,14 @@ class ListPertanyaanController extends Controller
             }
 
         }
-        // foreach ($dataNilaiHasilCFHE as $key => $valueNilaiHasilCFHE) {
-        //     $hasil = new NilaiPerhitunganModel;
-        //     $hasil->kode_penyakit = $valueNilaiHasilCFHE['kode_penyakit'];
-        //     $hasil->id_user = $request->get('id_pasien');
-        //     $hasil->kode_gejala = $valueNilaiHasilCFHE['kode_gejala'];
-        //     $hasil->nilai_cfhe = (float)$valueNilaiHasilCFHE['nilai_cfe'];
-        //     $hasil->save();
-        // }
+        foreach ($dataNilaiHasilCFHE as $key => $valueNilaiHasilCFHE) {
+            $hasil = new NilaiPerhitunganModel;
+            $hasil->kode_penyakit = $valueNilaiHasilCFHE['kode_penyakit'];
+            $hasil->id_user = $request->get('id_pasien');
+            $hasil->kode_gejala = $valueNilaiHasilCFHE['kode_gejala'];
+            $hasil->nilai_cfhe = (float)$valueNilaiHasilCFHE['nilai_cfe'];
+            $hasil->save();
+        }
         $depresi = BasisPengetahuan::all();
         $cf = 0;
         // penyakit
