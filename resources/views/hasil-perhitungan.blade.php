@@ -123,15 +123,14 @@
                             <tbody>
                                 @foreach ($hasilNilai as $item)
                                     @php
-                                        $nama_gejala = \App\Models\GejalaPenyakit::where('kode_gejala',$item->kode_gejala)->get();
+                                        $nama_gejala = \App\Models\GejalaPenyakit::where('kode_gejala',$item->kode_gejala)->first();
                                     @endphp
-                                   @foreach ($nama_gejala as $itemGejala)
                                     <tr>
                                         <td>{{ $item->kode_gejala }}</td>
-                                        <td>{{ $itemGejala->nama_gejala }}</td>
+                                        <td>{{ $nama_gejala->nama_gejala }}</td>
                                         <td>{{ $item->nilai_cfhe }}</td>
                                     </tr>
-                                   @endforeach
+
                                 @endforeach
                             </tbody>
                         </table>

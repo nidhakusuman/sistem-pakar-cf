@@ -25,7 +25,8 @@ class HasilPerhitunganController extends Controller
         $data['basis_pengetahuan'] = BasisPengetahuan::where('kode_pengetahuan', $kode_penyakit->kode_penyakit)->first();
 
         $data['getPenyakit'] = GejalaPenyakit::join('basis_pengetahuan','basis_pengetahuan.id','genjala_penyakit.kode_basis_pengetahuan')->where('basis_pengetahuan.kode_pengetahuan',$kode_penyakit->kode_penyakit)->get();
-        $data['hasilNilai'] = NilaiPerhitunganModel::where('kode_penyakit',$kode_penyakit->kode_penyakit)->get();
+        $data['hasilNilai'] = NilaiPerhitunganModel::where('kode_penyakit',$kode_penyakit->kode_penyakit)->limit(count($data['getPenyakit']))->get();
+
         return view('hasil-perhitungan',$data);
 
     }
