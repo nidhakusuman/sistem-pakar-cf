@@ -60,14 +60,14 @@ class ListPertanyaanController extends Controller
             }
 
         }
-        foreach ($dataNilaiHasilCFHE as $key => $valueNilaiHasilCFHE) {
-            $hasil = new NilaiPerhitunganModel;
-            $hasil->kode_penyakit = $valueNilaiHasilCFHE['kode_penyakit'];
-            $hasil->id_user = $request->get('id_pasien');
-            $hasil->kode_gejala = $valueNilaiHasilCFHE['kode_gejala'];
-            $hasil->nilai_cfhe = (float)$valueNilaiHasilCFHE['nilai_cfe'];
-            $hasil->save();
-        }
+        // foreach ($dataNilaiHasilCFHE as $key => $valueNilaiHasilCFHE) {
+        //     $hasil = new NilaiPerhitunganModel;
+        //     $hasil->kode_penyakit = $valueNilaiHasilCFHE['kode_penyakit'];
+        //     $hasil->id_user = $request->get('id_pasien');
+        //     $hasil->kode_gejala = $valueNilaiHasilCFHE['kode_gejala'];
+        //     $hasil->nilai_cfhe = (float)$valueNilaiHasilCFHE['nilai_cfe'];
+        //     $hasil->save();
+        // }
         $depresi = BasisPengetahuan::all();
         $cf = 0;
         // penyakit
@@ -143,19 +143,19 @@ class ListPertanyaanController extends Controller
         }
 
 
-        $cfoldGabungan = $cfArr["cf"][0];
+        /* Menghitung cfk1 */ $Cfk1 = $cfArr["cf"][0] + $cfArr["cf"][1] * (1 - $cfArr["cf"][0]);
+        /* Menghitung cfold data awal */ $cfoldGabungan = $Cfk1 + ($cfArr["cf"][2] * (1 - $Cfk1));
 
-        // foreach ($cfArr["cf"] as $cf) {
-        //     $cfoldGabungan = $cfoldGabungan + ($cf * (1 - $cfoldGabungan));
-        // }
-
-        for ($i = 0; $i < count($cfArr["cf"]) - 1; $i++) {
-            $cfoldGabungan = $cfoldGabungan + ($cfArr["cf"][$i + 1] * (1 - $cfoldGabungan));
+        /* start Menghitung cfold data selanjutnya */
+        for ($i = 0; $i < count($cfArr["cf"]) - 2; $i++) {
+            $Cfold = $cfoldGabungan + ($cfArr["cf"][$i] * (1 - $cfoldGabungan));
         }
+        /* end Menghitung cfold data selanjutnya */
+
 
 
         return [
-            "value" => "$cfoldGabungan",
+            "value" => "$Cfold",
             "kode_penyakit" => $cfArr["kode_penyakit"][0]
         ];
     }

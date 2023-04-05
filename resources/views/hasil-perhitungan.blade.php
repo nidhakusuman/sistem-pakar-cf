@@ -148,7 +148,7 @@
                             <th>Kesimpulan </th>
                             <td>
                                 <div class="alert alert-warning" role="alert">
-                                    ditemukan sebuah kemungkinan yaitu usia perkembangan anak masih berada pada tahap {{ $basis_pengetahuan->keterangan_usia }}. Dengan tingkat kemungkinan anak terkena speech delay adalah <strong>{{ $nilai_ahir * 100 }}%</strong>
+                                    ditemukan sebuah kemungkinan yaitu usia perkembangan anak masih berada pada tahap <strong>{{ $basis_pengetahuan->keterangan_usia }}</strong>. Dengan tingkat kemungkinan anak terkena speech delay adalah <strong>{{ $nilai_ahir * 100 }}%</strong>
                                 </div>
                                 {{-- {{ $data_pasien->nama_pasien }} --}}
                             </td>
