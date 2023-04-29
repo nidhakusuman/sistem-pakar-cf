@@ -12,7 +12,7 @@
   <meta name="author" content="Holger Koenemann">
   <meta name="generator" content="Eleventy v2.0.0">
   <meta name="HandheldFriendly" content="true">
-  <title>Stride HTML Template - Frontpage one</title>
+  <title>Deteksi Dini Speech Delay Pada Anak</title>
   <link rel="stylesheet" href="{{ asset('') }}frontend/css/theme.min.css">
 
   <style>
@@ -61,8 +61,7 @@
   <nav id="navScroll" class="navbar navbar-expand-lg navbar-light fixed-top" tabindex="0">
     <div class="container">
       <a class="navbar-brand pe-4 fs-4" href="/">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-layers-half"
-          viewbox="0 0 16 16">
+      <img src=" {{ asset('logoo.png')}}" class="img-fluid">
           <path
             d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
         </svg>
@@ -104,9 +103,10 @@
         <div class="row">
 
           <div class="col-lg-7 py-vh-6 position-relative" data-aos="fade-right">
-            <h1 class="display-1 fw-bold mt-5">Sell more useless stuff faster!</h1>
-            <p class="lead">To be honest, this is just a stupid placeholder text. We don´t know how to sell anything,
-              not even lesser or slower as you.</p>
+            <h1 class="display-1 fw-bold mt-5">Deteksi Dini Speech Delay Pada Anak</h1>
+            <p class="lead"> Bahasa merupakan peranan penting dalam kehidupan manusia karena bahasa 
+              merupakan alat komunikasi manusia dalam kehidupan sehari-hari. Masalah bahasa yang dialami seorang anak bisa 
+            berawal dari kemampuan tidak mendengar atau memahami lisan orang-orang sekelilingnya.</p>
             <a href="{{ route('konsultasi') }}" class="btn btn-dark btn-xl shadow me-3 rounded-0 my-5">Konsultasi</a>
           </div>
 
@@ -121,44 +121,36 @@
       <div class="container">
         <div class="row d-flex justify-content-end">
           <div class="col-lg-8" data-aos="fade-down">
-            <h2 class="display-6">Okay, there are three really good reasons for us. There are no more than three, but we
-              think three is a reasonable good number of good stuff.</h2>
+            <h2 class="display-6"> menurut who keterlambatan berbicara (speech delay) dapat disebabkan oleh berbagai faktor 
+              setiap anak memiliki faktor yang berbeda-beda.
+            </h2>
           </div>
         </div>
         <div class="row d-flex align-items-center">
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <span class="h5 fw-lighter">01.</span>
-            <h3 class="py-5 border-top border-dark">We rented this fancy startup office in an old factory building.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-            <a href="#" class="link-fancy">Learn more
+            <span class="h5 fw-lighter">01. faktor biologi</span>
+            <p class="py-5 border-top border-dark">Beberapa kondisi medis seperti gangguan pendengaran, cacat fisik pada bibir dan langit-langit mulut, 
+              serta gangguan neurologis seperti cerebral palsy dan autisme dapat mempengaruhi kemampuan bicara anak.</p>
             </a>
           </div>
 
           <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="400">
-            <span class="h5 fw-lighter">02.</span>
-            <h3 class="py-5 border-top border-dark">We don´t know exactly what we are doing. But thats good because we
-              can´t break something intentionally.</h3>
-            <p>Lorem, ipsum dolor sit adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a consequatur
-              inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis corrupti
-              deserunt, dolor.</p>
-            <a href="#" class="link-fancy">Learn more
+            <span class="h5 fw-lighter">02. Faktor Lingkungan</span>
+            <p class="py-5 border-top border-dark">Keterlambatan bicara pada anak dapat disebabkan oleh faktor lingkungan seperti kurangnya stimulasi bicara, 
+              interaksi yang terbatas dengan orang dewasa, serta kurangnya akses ke fasilitas kesehatan.</p>
             </a>
           </div>
 
           <div class="col-md-6 col-lg-4 py-vh-6 pb-0" data-aos="fade-up" data-aos-delay="600">
-            <span class="h5 fw-lighter">03.</span>
-            <h3 class="py-5 border-top border-dark">There is no real number three reason. So please read again number
-              one and two.</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus culpa, voluptatibus ex itaque, sapiente a
-              consequatur inventore beatae, ipsam debitis omnis consequuntur iste asperiores. Similique quisquam debitis
-              corrupti deserunt, dolor.</p>
-            <a href="#" class="link-fancy">Learn more
-            </a>
+            <span class="h5 fw-lighter">03. Faktor Psikososial</span>
+            <p class="py-5 border-top border-dark">Faktor psikososial seperti stres, 
+              depresi, dan trauma dapat mempengaruhi perkembangan bahasa dan bicara anak.</p>
           </div>
-        </div>
-
+          <div data-aos="fade-down">
+          <h2 class="col-lg-8" class="display-6"> untuk mengetahui penyebab keterlambatan berbicara pada anak orang tua dapat menjawab Beberapa
+            pertanyaan yang sesuai dengan usia anak pada fitur konsultasi. agar nantinya orang tua mengetahui jalan keluar dan cara 
+            pengobatannya. 
+            </h2>
       </div>
     </div>
 
@@ -176,7 +168,7 @@
               d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
           </svg>
           <address class="text-secondary mt-3">
-            <strong>Stride, Inc.</strong><br>
+            <strong>Politeknik Negeri Jember</strong><br>
             1355 Market St, Suite 900<br>
             San Francisco, CA 94103<br>
             <abbr title="Phone">P:</abbr>

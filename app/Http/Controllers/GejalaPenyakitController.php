@@ -35,7 +35,7 @@ class GejalaPenyakitController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode' => 'required|unique:genjala_penyakit,kode_gejala',
+            'kode' => 'required|unique:gejala_penyakit,kode_gejala',
             'kode_pengetahuan' => 'required',
             'nama_gejala' => 'required',
         ]);
@@ -78,7 +78,7 @@ class GejalaPenyakitController extends Controller
     public function update(Request $request, string $id)
     {
         $gejala = GejalaPenyakit::find($id);
-        $isUniqueKodeAkun = $gejala->kode_gejala == $request->get('kode') ? '' : '|unique:genjala_penyakit,kode_gejala';
+        $isUniqueKodeAkun = $gejala->kode_gejala == $request->get('kode') ? '' : '|unique:gejala_penyakit,kode_gejala';
         $request->validate([
             'kode' => 'required'.$isUniqueKodeAkun,
             'kode_pengetahuan' => 'required',

@@ -48,7 +48,7 @@ class ListPertanyaanController extends Controller
         $hcf = 0;
 
         $dataNilaiHasilCFHE = [];
-        $ruleSetiapDepresi = GejalaPenyakit::join('basis_pengetahuan','basis_pengetahuan.id','genjala_penyakit.kode_basis_pengetahuan')->whereIn("genjala_penyakit.kode_gejala", $kodeGejala)->whereIn('basis_pengetahuan.kode_pengetahuan',$kode_penyakit)->get();
+        $ruleSetiapDepresi = GejalaPenyakit::join('basis_pengetahuan','basis_pengetahuan.id','gejala_penyakit.kode_basis_pengetahuan')->whereIn("gejala_penyakit.kode_gejala", $kodeGejala)->whereIn('basis_pengetahuan.kode_pengetahuan',$kode_penyakit)->get();
         foreach ($ruleSetiapDepresi as $ruleKey => $item) {
             $hcf =  $item->nilai_pakar * $bobotPilihan[$ruleKey];
             if ($kode_penyakit[$ruleKey] == $item->kode_pengetahuan) {
@@ -60,14 +60,14 @@ class ListPertanyaanController extends Controller
             }
 
         }
-        // foreach ($dataNilaiHasilCFHE as $key => $valueNilaiHasilCFHE) {
-        //     $hasil = new NilaiPerhitunganModel;
-        //     $hasil->kode_penyakit = $valueNilaiHasilCFHE['kode_penyakit'];
-        //     $hasil->id_user = $request->get('id_pasien');
-        //     $hasil->kode_gejala = $valueNilaiHasilCFHE['kode_gejala'];
-        //     $hasil->nilai_cfhe = (float)$valueNilaiHasilCFHE['nilai_cfe'];
-        //     $hasil->save();
-        // }
+        foreach ($dataNilaiHasilCFHE as $key => $valueNilaiHasilCFHE) {
+        $hasil = new NilaiPerhitunganModel;
+        $hasil->kode_penyakit = $valueNilaiHasilCFHE['kode_penyakit'];
+        $hasil->id_user = $request->get('id_pasien');
+        $hasil->kode_gejala = $valueNilaiHasilCFHE['kode_gejala'];
+        $hasil->nilai_cfhe = (float)$valueNilaiHasilCFHE['nilai_cfe'];
+        $hasil->save();
+        }
         $depresi = BasisPengetahuan::all();
         $cf = 0;
         // penyakit
