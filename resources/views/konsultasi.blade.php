@@ -61,12 +61,10 @@
   <nav id="navScroll" class="navbar navbar-expand-lg navbar-light fixed-top" tabindex="0">
     <div class="container">
       <a class="navbar-brand pe-4 fs-4" href="/">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-layers-half"
-          viewbox="0 0 16 16">
+      <img src=" {{ asset('assets/img/logoo.png')}}" class="img-fluid">
           <path
             d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
         </svg>
-        <span class="ms-1 fw-bolder">Stride</span>
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -118,8 +116,13 @@
             <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="400">
               <label for="">Nama Lengkap Anak</label>
               <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Lengkap">
-
             </div>
+
+           <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="400">
+                                <label for="exampleFormControlSelect1">Usia Anak</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="kode_pengetahuan">
+                                </select>
+                            </div>
 
           <div class="col-md-6 col-lg-4 py-vh-5 pb-0" data-aos="fade-up" data-aos-delay="600">
             <button type="submit" class="btn btn-primary ">Lanjutkan Konsultasi </button>
@@ -137,72 +140,10 @@
   <footer>
     <div class="container small border-top">
       <div class="row py-5 d-flex justify-content-between">
-
-        <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-layers-half"
-            viewbox="0 0 16 16">
-            <path
-              d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
-          </svg>
-          <address class="text-secondary mt-3">
-            <strong>Stride, Inc.</strong><br>
-            1355 Market St, Suite 900<br>
-            San Francisco, CA 94103<br>
-            <abbr title="Phone">P:</abbr>
-            (123) 456-7890
-          </address>
+        
+          <address class="text-center mt-3">
+            <strong>2019-Politeknik Negeri Jember</strong><br>
         </div>
-        <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
-          <h3 class="h6 mb-3">Company</h3>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" aria-current="page" href="#">Lorem ipsum</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Dolor sitam est</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Sed odio cras</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Commodo tortor ac</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
-          <h3 class="h6 mb-3">Products</h3>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" aria-current="page" href="#">Fusce dapibus est</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Donec sed dui</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Tortor mauris</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Ut fermentum massa</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Magna mollis</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-3 p-5">
-          <h3 class="h6 mb-3">Subpages</h3>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" aria-current="page" href="404.html">404 System Page</a>
-              <a class="nav-link link-secondary ps-0" aria-current="page" href="register.html">Register System Page</a>
-              <a class="nav-link link-secondary ps-0" aria-current="page" href="content.html">Simple Text Content
-                Page</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
     <div class="container text-center py-3 small">Made by <a href="https://templatedeck.com" class="link-fancy"
         target="_blank">templatedeck.com</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>
