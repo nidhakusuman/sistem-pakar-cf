@@ -83,7 +83,11 @@
               Konsultasi
             </a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">
+              login
+            </a>
+          </li>
 
         </ul>
 
@@ -96,7 +100,7 @@
 
       <div class="container position-relative">
         <div class="col-12 col-lg-8 mt-0 h-100 position-absolute top-0 end-0 bg-cover" data-aos="fade-left"
-          style="background-image: url({{ asset('') }}frontend/img/webp/interior11.webp);">
+          style="background-image: url({{ asset('') }}frontend/img/bg2.jpeg);">
 
         </div>
         <div class="row">

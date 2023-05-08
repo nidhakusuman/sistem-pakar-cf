@@ -83,7 +83,11 @@
               Konsultasi
             </a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">
+              login
+            </a>
+          </li>
 
         </ul>
 
