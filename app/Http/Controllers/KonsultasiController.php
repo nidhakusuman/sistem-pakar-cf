@@ -21,6 +21,7 @@ class KonsultasiController extends Controller
         $new = new HasilPerhitungan;
         $new->tanggal = now();
         $new->nama_pasien = $request->get('nama');
+        $new->status_usia = $request->get('status_usia');
         $new->save();
         return redirect()->route('list-pertanyaan');
     }
