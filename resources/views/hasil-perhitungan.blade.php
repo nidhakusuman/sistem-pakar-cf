@@ -59,40 +59,45 @@
 
 <body data-bs-spy="scroll" data-bs-target="#navScroll">
 
-  <nav id="navScroll" class="navbar navbar-expand-lg navbar-light fixed-top" tabindex="0">
+<nav id="navScroll" class="navbar navbar-expand-lg navbar-light fixed-top" tabindex="0">
     <div class="container">
-      <a class="navbar-brand pe-4 fs-4" href="/">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-layers-half"
-          viewbox="0 0 16 16">
-          <path
-            d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
-        </svg>
-        <span class="ms-1 fw-bolder">Stride</span>
-      </a>
+        <a class="navbar-brand pe-4 fs-4" href="/">
+            <img src=" {{ asset('assets/img/logoo.png') }}" class="img-fluid">
+            <path
+                d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
+            </svg>
+        </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('welcome') }}#services" aria-label="Brings you to the frontpage">
-              Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('konsultasi') }}">
-              Konsultasi
-            </a>
-          </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('welcome') }}#services"
+                        aria-label="Brings you to the frontpage">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('konsultasi') }}">
+                        Konsultasi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">
+                          login
+                    </a>
+                </li>
 
 
-        </ul>
+            </ul>
 
-      </div>
+        </div>
     </div>
-  </nav>
+</nav>
 
   <main>
     <div class="w-100 overflow-hidden bg-gray-100" id="top">
@@ -147,7 +152,23 @@
                             <th>Kesimpulan </th>
                             <td>
                                 <div class="alert alert-warning" role="alert">
-                                    ditemukan sebuah kemungkinan yaitu usia perkembangan anak masih berada pada tahap <strong>{{ $basis_pengetahuan->keterangan_usia }}</strong>. Dengan tingkat kemungkinan anak terkena speech delay adalah <strong>{{ $nilai_ahir * 100 }}%</strong>
+                                    pada usia anak <strong>{{ $basis_pengetahuan->keterangan_usia }}</strong>. Ditemukan Kemungkinan Speech Delay Anak Sebanyak <strong>{{ $nilai_ahir * 100 }}%</strong>
+                                </div>
+                                {{-- {{ $data_pasien->nama_pasien }} --}}
+                            </td>
+                        </tr>
+
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <th>Penanganan Pertama Atau Solusi</th>
+                            <td>
+                              <div>
+                              Adapun penyebab keterlambatan berbicara dikarenakan berbagai macam. mulai dari masalah pendengaran, gangguan perkembangan atau bahkan pola asuh yang salah.  Namun bisa diatasi dengan beberapa hal ini :
+                              </div>
+                                <div class="alert alert-warning" role="alert">
+                                    Melakukan obrolan sederhana dengan anak, Belajar bernyanyi bersama, membacakan buku cerita atau mendongengkan anak. 
+                                    <strong>Untuk penanganan lebih lanjut bisa menghubungi dokter anak atau terapis tumbuh kembang anak </strong>
                                 </div>
                                 {{-- {{ $data_pasien->nama_pasien }} --}}
                             </td>
@@ -155,12 +176,11 @@
 
                     </tbody>
 
-
                 </table>
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-end">
-                    <a href="{{ route('konsultasi') }}" class="btn btn-primary">Konsultasi</a>
+                    <a href="{{ route('konsultasi') }}" class="btn btn-primary">Konsultasi Ulang</a>
                 </div>
             </div>
         </div>
@@ -172,74 +192,12 @@
   </main>
 
   <footer>
-    <div class="container small border-top">
-      <div class="row py-5 d-flex justify-content-between">
+  <div class="container small border-top">
+            <div class="row py-5 d-flex justify-content-between">
 
-        <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-layers-half"
-            viewbox="0 0 16 16">
-            <path
-              d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
-          </svg>
-          <address class="text-secondary mt-3">
-            <strong>Stride, Inc.</strong><br>
-            1355 Market St, Suite 900<br>
-            San Francisco, CA 94103<br>
-            <abbr title="Phone">P:</abbr>
-            (123) 456-7890
-          </address>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
-          <h3 class="h6 mb-3">Company</h3>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" aria-current="page" href="#">Lorem ipsum</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Dolor sitam est</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Sed odio cras</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Commodo tortor ac</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-3 border-end p-5">
-          <h3 class="h6 mb-3">Products</h3>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" aria-current="page" href="#">Fusce dapibus est</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Donec sed dui</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Tortor mauris</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Ut fermentum massa</a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" href="#">Magna mollis</a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-12 col-lg-6 col-xl-3 p-5">
-          <h3 class="h6 mb-3">Subpages</h3>
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link link-secondary ps-0" aria-current="page" href="404.html">404 System Page</a>
-              <a class="nav-link link-secondary ps-0" aria-current="page" href="register.html">Register System Page</a>
-              <a class="nav-link link-secondary ps-0" aria-current="page" href="content.html">Simple Text Content
-                Page</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+                <address class="text-center mt-3">
+                    <strong>2019-Politeknik Negeri Jember</strong><br>
+            </div>
 
     <div class="container text-center py-3 small">Made by <a href="https://templatedeck.com" class="link-fancy"
         target="_blank">templatedeck.com</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>

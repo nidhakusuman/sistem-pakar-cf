@@ -228,38 +228,38 @@
                                                     <div class="col-md-4">
                                                         <div class="form-check form-check-inline mb-3">
                                                             <input class="form-check-input" type="checkbox"
-                                                                id="inlineCheckbox1" value="0"
+                                                                id="inlineCheckbox1" value="1"
                                                                 name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
                                                             <label class="form-check-label"
-                                                                for="inlineCheckbox1">tidak</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline mb-3">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="inlineCheckbox2" value="0.2"
-                                                                name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
-                                                            <label class="form-check-label"
-                                                                for="inlineCheckbox2">Tidak Tahu / Tidak yakin</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline mb-3">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="inlineCheckbox2" value="0.4"
-                                                                name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
-                                                            <label class="form-check-label"
-                                                                for="inlineCheckbox2">Mungkin</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline mb-3">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                id="inlineCheckbox2" value="0.6"
-                                                                name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
-                                                            <label class="form-check-label"
-                                                                for="inlineCheckbox2">Kemungkinan Besar</label>
+                                                                for="inlineCheckbox1">Sangat Yakin</label>
                                                         </div>
                                                         <div class="form-check form-check-inline mb-3">
                                                             <input class="form-check-input" type="checkbox"
                                                                 id="inlineCheckbox2" value="0.8"
                                                                 name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
                                                             <label class="form-check-label"
-                                                                for="inlineCheckbox2">Pasti</label>
+                                                                for="inlineCheckbox2">Yakin</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mb-3">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="inlineCheckbox2" value="0.6"
+                                                                name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
+                                                            <label class="form-check-label"
+                                                                for="inlineCheckbox2">Cukup Yakin</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mb-3">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="inlineCheckbox2" value="0.2"
+                                                                name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
+                                                            <label class="form-check-label"
+                                                                for="inlineCheckbox2">Tidak Tahu</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mb-3">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="inlineCheckbox2" value="0"
+                                                                name="kondisi[{{ $item->kode_gejala }}-{{ $item->basis->kode_pengetahuan }}]">
+                                                            <label class="form-check-label"
+                                                                for="inlineCheckbox2">Tidak</label>
                                                         </div>
                                                     </div>
                                                 </div>

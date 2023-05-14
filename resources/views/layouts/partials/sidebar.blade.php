@@ -46,16 +46,6 @@
         <li class="side-nav-menu-item {{ Request::segment(1) == 'data-pasien' ? 'active' : ''}}"">
             <a class="side-nav-menu-link media align-items-center" href="{{ route('data.pasien.index') }}" target="_blank">
           <span class="side-nav-menu-icon d-flex mr-3">
-            <i class="gd-contact"></i>
-          </span>
-                <span class="side-nav-fadeout-on-closed media-body">Data Admin</span>
-            </a>
-        </li>
-        <!-- End Documentation -->
-        <!-- Documentation -->
-        <li class="side-nav-menu-item {{ Request::segment(1) == 'data-pasien' ? 'active' : ''}}"">
-            <a class="side-nav-menu-link media align-items-center" href="{{ route('data.pasien.index') }}" target="_blank">
-          <span class="side-nav-menu-icon d-flex mr-3">
             <i class="gd-user"></i>
           </span>
                 <span class="side-nav-fadeout-on-closed media-body">Data Pasien</span>
