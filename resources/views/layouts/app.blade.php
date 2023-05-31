@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <!-- Title -->
-    <title>Dashboard | Graindashboard UI Kit</title>
+    <title>Deteksi Speech Delay</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
@@ -63,7 +63,7 @@
 
                     <ul id="profileMenu" class="unfold unfold-user unfold-light unfold-top unfold-centered position-absolute pt-2 pb-1 mt-4 unfold-css-animation unfold-hidden fadeOut" aria-labelledby="profileMenuInvoker" style="animation-duration: 300ms;">
                         <li class="unfold-item unfold-item-has-divider">
-                            <a class="unfold-link d-flex align-items-center text-nowrap" href="#">
+                            <a class="unfold-link d-flex align-items-center text-nowrap" href="">
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-power-off"></i>
                     </span>
