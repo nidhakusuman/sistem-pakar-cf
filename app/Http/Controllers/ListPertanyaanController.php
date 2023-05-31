@@ -78,7 +78,7 @@ class ListPertanyaanController extends Controller
                 "kode_penyakit" => []
             ];
             $res = 0;
-            $ruleSetiapDepresi = NilaiPerhitunganModel::whereIn("kode_gejala", $kodeGejala)->where("kode_penyakit", $depresi[$i]->kode_pengetahuan)->get();
+           $ruleSetiapDepresi=NilaiPerhitunganModel::whereIn("kode_gejala",$kodeGejala)->where("kode_penyakit",$depresi[$i]->kode_pengetahuan)->where('id_user',Session::get('id'))->get();
             // if ($i == 3) {
             //     return $ruleSetiapDepresi;
             // }
@@ -142,20 +142,21 @@ class ListPertanyaanController extends Controller
             ];
         }
 
+        $cfoldGabungan = $cfArr["cf"][0];
 
-        /* Menghitung cfk1 */ $Cfk1 = $cfArr["cf"][0] + $cfArr["cf"][1] * (1 - $cfArr["cf"][0]);
-        /* Menghitung cfold data awal */ $cfoldGabungan = $Cfk1 + ($cfArr["cf"][2] * (1 - $Cfk1));
+//         for () {
+//             $cfoldGabungan = $cfoldGabungan + ($cfArr["cf"][$i + 1] * (1 - $cfoldGabungan));
+//         }
 
-        /* start Menghitung cfold data selanjutnya */
-        for ($i = 0; $i < count($cfArr["cf"]) - 2; $i++) {
-            $Cfold = $cfoldGabungan + ($cfArr["cf"][$i] * (1 - $cfoldGabungan));
-        }
-        /* end Menghitung cfold data selanjutnya */
+    for ($i = 0; $i < count($cfArr["cf"]) - 1; $i++) { 
+        $cfoldGabungan = $cfoldGabungan + ($cfArr["cf"][$i + 1] * (1 - $cfoldGabungan));
+    }
+    
 
 
 
         return [
-            "value" => "$Cfold",
+            "value" => "$cfoldGabungan",
             "kode_penyakit" => $cfArr["kode_penyakit"][0]
         ];
     }

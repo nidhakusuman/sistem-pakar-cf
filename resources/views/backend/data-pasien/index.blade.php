@@ -33,6 +33,8 @@
                                         $kode_penyakit = \App\Models\HasilPerhitungan::where('nama_pasien',$item->nama_pasien)->get();
                                         $nilai_akhir = \App\Models\HasilPerhitungan::where('nama_pasien',$item->nama_pasien)->max('nilai_akhir');
                                     @endphp
+
+                                       
                                         <tr>
                                             <td>{{ $item->nama_pasien }}</td>
                                             <td>
@@ -54,8 +56,7 @@
                                                 </table>
                                             </td>
                                             <td>
-                                                {{ $nilai_akhir * 100 }} %
-
+                                                {{ (float) $nilai_akhir * 100 }}
                                             </td>
                                         </tr>
                                 @endforeach

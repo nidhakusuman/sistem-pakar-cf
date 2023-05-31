@@ -12,7 +12,7 @@
     <meta name="author" content="Holger Koenemann">
     <meta name="generator" content="Eleventy v2.0.0">
     <meta name="HandheldFriendly" content="true">
-    <title>Stride HTML Template - Frontpage one</title>
+    <title>Halaman Konsultasi</title>
     <link rel="stylesheet" href="{{ asset('') }}frontend/css/theme.min.css">
 
     <style>
@@ -130,19 +130,10 @@
                         <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="400">
                             <label for="exampleFormControlSelect1">Usia Anak</label>
                             <select class="form-control" id="exampleFormControlSelect1" name="status_usia">
-                                <option value="1">Usia 1-6 Bulan</option>
-                                <option value="2">Usia 6-10 Bulan</option>
-                                <option value="3">10-11 Bulan</option>
-                                <option value="4">Usia 12 – 15 Bulan</option>
-                                <option value="5">16-18 Bulan</option>
-                                <option value="6">Usia 19 – 21 Bulan</option>
-                                <option value="7">Usia 22 – 24 Bulan</option>
-                                <option value="8">Usia 25 – 30 Bulan</option>
-                                <option value="9">Usia 30 – 36 Bulan</option>
-                                <option value="10">Usia 3 – 4 tahun</option>
-                                <option value="11">Usia 4-5 Tahun</option>
-                                <option value="12">Usia 5 – 6 Tahun</option>
-                                <option value="13">Usia 6 – 7 Tahun</option>
+                                <option value="">Pilih Usia Anak</option>
+                                @foreach ($umur as $item)
+                                    <option value="{{ $item->id }}">{{ ucwords($item->kode_pengetahuan) }}  || {{ ucwords($item->keterangan_usia) }}</option>
+                                @endforeach
                             </select>
                         </div>
 

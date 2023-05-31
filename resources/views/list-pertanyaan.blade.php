@@ -132,77 +132,10 @@
                             <label for="">Nama</label>
                             <input type="text" class="form-control" value="{{ $pasien->nama_pasien }}" readonly>
                         </div>
-
-                
-
-                        @if ($pasien->status_usia == 1)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 1-6 Bulan" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 2)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 6-10 Bulan" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 3)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="10-11 Bulan" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 4)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 12-15 Bulan" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 5)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="16-18 Bulan" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 6)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 19-21 Bulan" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 7)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 22-24 Bulan" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 8)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 25-30 Bulan" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 9)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 30-36 Bulan" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 10)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 3-4 Tahun" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 11)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 4-5 Tahun" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 12)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 5-6 Tahun" readonly>
-                            </div>
-                        @elseif ($pasien->status_usia == 13)
-                            <div class="col-md-6">
-                                <label for="">Usia</label>
-                                <input type="text" class="form-control" value="Usia 6-7 Tahun" readonly>
-                            </div>
-                        @endif
-
-
+                        <div class="col-md-6">
+                            <label for="">Usia</label>
+                            <input type="text" class="form-control" value="{{ Session::get('nama_usia') }}" readonly>
+                        </div>
                     </div>
                 </div>
                 <div class="row d-flex align-items-center">
