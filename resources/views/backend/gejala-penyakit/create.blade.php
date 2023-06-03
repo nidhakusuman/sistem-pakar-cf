@@ -29,6 +29,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Kode Pengetahuan</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="kode_pengetahuan">
+                                <option value="">Pilih Usia Anak</option>
                                   @foreach ($kategori as $item)
                                       <option value="{{ $item->id }}">{{ ucwords($item->kode_pengetahuan) }}  || {{ ucwords($item->keterangan_usia) }}</option>
                                   @endforeach
