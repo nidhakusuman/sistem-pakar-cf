@@ -89,6 +89,9 @@
 
 <script src="{{ asset('') }}assets/graindashboard/js/graindashboard.js"></script>
 <script src="{{ asset('') }}assets/graindashboard/js/graindashboard.vendor.js"></script>
+<!-- ... -->
+<script src="{{ asset('') }}assets/graindashboard/js/graindashboard.js"></script>
+<script src="{{ asset('') }}assets/graindashboard/js/graindashboard.vendor.js"></script>
 
 <!-- DEMO CHARTS -->
 <script src="{{ asset('') }}assets/demo/resizeSensor.js"></script>
@@ -97,10 +100,33 @@
 <script src="{{ asset('') }}assets/demo/gd.chartist-area.js"></script>
 <script src="{{ asset('') }}assets/demo/gd.chartist-bar.js"></script>
 <script src="{{ asset('') }}assets/demo/gd.chartist-donut.js"></script>
+
 <script>
-    $.GDCore.components.GDChartistArea.init('.js-area-chart');
-    $.GDCore.components.GDChartistBar.init('.js-bar-chart');
-    $.GDCore.components.GDChartistDonut.init('.js-donut-chart');
+  // Tambahkan event listener untuk tombol "Sign Out"
+  document.querySelector('.unfold-link').addEventListener('click', function(e) {
+    e.preventDefault(); // Mencegah tindakan default dari elemen <a>
+
+    // Kirim permintaan log out ke server
+    fetch('/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Menggunakan token CSRF Laravel jika diperlukan
+      },
+      // Tambahkan konfigurasi lainnya seperti body jika diperlukan
+    })
+    .then(response => {
+      if (response.ok) {
+        // Log out berhasil, lakukan pengalihan halaman atau tindakan lainnya
+        window.location.href = '/login'; // Contoh: pengalihan ke halaman login
+      } else {
+        // Log out gagal, tangani kesalahan jika diperlukan
+      }
+    })
+    .catch(error => {
+      // Tangani kesalahan jaringan atau permintaan jika diperlukan
+    });
+  });
 </script>
 @stack('js')
 </body>

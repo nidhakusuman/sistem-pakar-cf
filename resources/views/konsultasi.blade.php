@@ -122,20 +122,25 @@
                         </div>
 
                         <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="400">
-                            <label for="">Nama Lengkap Anak</label>
-                            <input type="text" class="form-control" name="nama"
-                                placeholder="Masukkan Nama Lengkap">
+                            <label for="nama">Nama Lengkap Anak</label>
+                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama Lengkap Anak" required>
+                            @error('nama')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                         </div>
 
                         <div class="col-md-6 col-lg-4 py-vh-4 pb-0" data-aos="fade-up" data-aos-delay="400">
-                            <label for="exampleFormControlSelect1">Usia Anak</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="status_usia">
+                            <label for="usia_anak">Usia Anak</label>
+                            <select class="form-control" id="usia_anak" name="status_usia" required>
                                 <option value="">Pilih Usia Anak</option>
                                 @foreach ($umur as $item)
-                                    <option value="{{ $item->id }}">{{ ucwords($item->kode_pengetahuan) }}  || {{ ucwords($item->keterangan_usia) }}</option>
+                                <option value="{{ $item->id }}">{{ ucwords($item->kode_pengetahuan) }} || {{ ucwords($item->keterangan_usia) }}</option>
                                 @endforeach
                             </select>
-                        </div>
+</div>
+
 
 
                         <div class="col-md-6 col-lg-4 py-vh-5 pb-0" data-aos="fade-up" data-aos-delay="600">
